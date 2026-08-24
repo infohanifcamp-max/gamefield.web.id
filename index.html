@@ -12,9 +12,10 @@
         .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
         .game-card { background-color: #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px rgba(0,0,0,0.3); transition: transform 0.2s; text-align: center; padding-bottom: 15px; }
         .game-card:hover { transform: translateY(-5px); }
-        .game-card img { width: 100%; height: 160px; object-fit: cover; }
+        .game-card img { width: 100%; height: 160px; object-fit: cover; background-color: #1e293b; }
         .game-card h3 { font-size: 16px; margin: 15px 10px; min-height: 40px; }
         .play-btn { background-color: #10b981; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; }
+        .play-btn:hover { background-color: #059669; }
     </style>
 </head>
 <body>
@@ -24,18 +25,21 @@
     </header>
     <div class="container">
         <div class="game-grid">
+            <!-- Game 1 -->
             <div class="game-card">
-                <img src="https://gamemonetize.com" alt="Bullet Bros">
+                <img src="https://gamemonetize.com" onerror="this.src='https://unsplash.com'" alt="Bullet Bros">
                 <h3>Bullet Bros</h3>
                 <a href="https://gamemonetize.com" class="play-btn" target="_blank">Main Sekarang</a>
             </div>
+            <!-- Game 2 -->
             <div class="game-card">
-                <img src="https://gamemonetize.com" alt="Real Car Simulator">
+                <img src="https://gamemonetize.com" onerror="this.src='https://unsplash.com'" alt="Real Car Simulator">
                 <h3>Real Car Driving Simulator</h3>
                 <a href="https://gamemonetize.com" class="play-btn" target="_blank">Main Sekarang</a>
             </div>
+            <!-- Game 3 -->
             <div class="game-card">
-                <img src="https://gamemonetize.com" alt="Stickman Hook">
+                <img src="https://gamemonetize.com" onerror="this.src='https://unsplash.com'" alt="Stickman Hook">
                 <h3>Stickman Hook</h3>
                 <a href="https://gamemonetize.com" class="play-btn" target="_blank">Main Sekarang</a>
             </div>
