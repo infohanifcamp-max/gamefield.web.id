@@ -3,47 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamefield | Main Game HTML5 Gratis & Seru</title>
+    <title>Gamefield - Main Game Online Gratis</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 0; }
-        header { background-color: #1e293b; padding: 25px; text-align: center; border-bottom: 4px solid #3b82f6; }
-        h1 { margin: 0; font-size: 28px; color: #3b82f6; letter-spacing: 2px; }
+        .header { background-color: #1e293b; padding: 20px; text-align: center; border-bottom: 4px solid #3b82f6; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; }
+        .logo { font-size: 24px; font-weight: bold; color: #3b82f6; letter-spacing: 2px; }
+        .main-banner { background: linear-gradient(135deg, #3b82f6, #1d4ed8); padding: 30px; text-align: center; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3); }
+        .main-banner h2 { margin: 0; font-size: 28px; color: #fff; }
         .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
-        .game-card { background-color: #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px rgba(0,0,0,0.3); transition: transform 0.2s; text-align: center; padding-bottom: 15px; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .game-card { background-color: #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px rgba(0,0,0,0.3); transition: transform 0.2s; text-align: center; padding-bottom: 15px; display: flex; flex-direction: column; justify-content: space-between; }
         .game-card:hover { transform: translateY(-5px); }
-        .game-card img { width: 100%; height: 160px; object-fit: cover; background-color: #1e293b; }
-        .game-card h3 { font-size: 16px; margin: 15px 10px; min-height: 40px; }
-        .play-btn { background-color: #10b981; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; }
+        .game-card img { width: 100%; height: 150px; object-fit: cover; border-bottom: 2px solid #0f172a; }
+        .game-card h3 { font-size: 14px; margin: 12px 10px; min-height: 35px; color: #e2e8f0; }
+        .play-btn { background-color: #10b981; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; width: 80%; margin: 0 auto; }
         .play-btn:hover { background-color: #059669; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🎮 GAMEFIELD</h1>
-        <p>Portal Game HTML5 Terbaik - Tinggal Main Tanpa Download!</p>
-    </header>
+
+    <div class="header">
+        <div class="logo">🎮 GAMEFIELD</div>
+    </div>
+
     <div class="container">
-        <div class="game-grid">
-            <!-- Game 1 -->
-            <div class="game-card">
-                <img src="https://gamemonetize.com" onerror="this.src='https://unsplash.com'" alt="Bullet Bros">
-                <h3>Bullet Bros</h3>
-                <a href="https://gamemonetize.com" class="play-btn" target="_blank">Main Sekarang</a>
-            </div>
-            <!-- Game 2 -->
-            <div class="game-card">
-                <img src="https://gamemonetize.com" onerror="this.src='https://unsplash.com'" alt="Real Car Simulator">
-                <h3>Real Car Driving Simulator</h3>
-                <a href="https://gamemonetize.com" class="play-btn" target="_blank">Main Sekarang</a>
-            </div>
-            <!-- Game 3 -->
-            <div class="game-card">
-                <img src="https://gamemonetize.com" onerror="this.src='https://unsplash.com'" alt="Stickman Hook">
-                <h3>Stickman Hook</h3>
-                <a href="https://gamemonetize.com" class="play-btn" target="_blank">Main Sekarang</a>
-            </div>
+        <div class="main-banner">
+            <h2>4000+ Games | No Install Needed | All Free</h2>
+        </div>
+        <div class="game-grid" id="game-container">
+            <!-- Game otomatis muncul di sini -->
         </div>
     </div>
+
+    <script>
+        // Menggunakan feed data resmi GameMonetize secara publik
+        const URL_FEED = "https://gamemonetize.com";
+
+        fetch(URL_FEED)
+            .then(res => res.json())
+            .then(data => {
+                let html = '';
+                // Mengambil 40 game terpopuler secara otomatis beserta gambar aslinya
+                data.slice(0, 40).forEach(game => {
+                    html += `
+                        <div class="game-card">
+                            <img src="${game.thumb}" alt="${game.title}">
+                            <h3>${game.title}</h3>
+                            <a href="${game.url}" class="play-btn" target="_blank">Main Sekarang</a>
+                        </div>
+                    `;
+                });
+                document.getElementById('game-container').innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById('game-container').innerHTML = "<p>Gagal memuat katalog game. Silakan refresh halaman.</p>";
+                console.log(err);
+            });
+    </script>
 </body>
 </html>
